@@ -4,16 +4,15 @@
     <hr class="mt-0 mb-2">
     <div v-if="collocation">
       <ul class="collapsed gramrel pl-0" data-collapse-target>
-        <Annotate
+        <li
           v-for="Word in collocation.Words"
           v-if="Word.cm"
           class="gramrel-item list-unstyled"
-          tag="li"
         >
           <span
-            v-html="Helper.highlight(Word.cm.replace(/ /gi, ''), word, level)"
+            v-html="Helper.highlight(Word.cm, word, level)"
           ></span>
-        </Annotate>
+        </li>
       </ul>
       <ShowMoreButton
         :data-bg-hsk="level"

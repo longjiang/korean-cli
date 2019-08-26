@@ -150,9 +150,9 @@ export default {
     show(entry) {
       this.entryKey += 1
       this.entry = entry
-      document.title = `${entry.hangul} (${entry.pinyin}) ${
+      document.title = `${entry.hangul} (${
         entry.english
-      } | Korean Zero to Hero`
+      }) | Korean Zero to Hero`
     },
     route() {
       $('#koreanzerotohero')[0].scrollIntoView()

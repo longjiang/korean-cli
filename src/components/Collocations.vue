@@ -29,7 +29,8 @@
         v-if="sketch !== undefined && (sketch === false || !sketch.Gramrels)"
       >
         Sorry, we could not find any “{{ text }}” collocations in this corpus
-        (dataset). You can set a different corpus in <a href="#/settings">Settings</a>.
+        (dataset). You can set a different corpus in
+        <a href="#/settings">Settings</a>.
       </div>
       <hr />
       <div class="mt-2">
@@ -85,7 +86,9 @@ export default {
     }
   },
   mounted() {
-    SketchEngine.wsketch(this.text, response => {
+    let term = this.text.replace(/하?다$/, '') // remove final 다 to get all verb forms
+
+    SketchEngine.wsketch(term, response => {
       this.sketch = response
       this.collocationsKey += 1
     })

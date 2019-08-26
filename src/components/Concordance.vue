@@ -9,11 +9,11 @@
           data-collapse-target
         >
           <li v-for="example in examples">
-            <Annotate tag="div" class="pt-2 pb-2">
+            <div class="pt-2 pb-2">
               <span
-                v-html="Helper.highlight(example.chinese, text, level)"
+                v-html="Helper.highlight(example.korean, text, level)"
               ></span>
-            </Annotate>
+            </div>
             <div v-if="example.english">{{ example.english }}</div>
             <hr />
           </li>
