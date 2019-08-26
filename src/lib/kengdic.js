@@ -67,6 +67,7 @@ export default {
     return results
   },
   lookupFuzzy(text, limit = false) {
+    text = text.trim()
     let results = []
     if (this.isChinese(text)) {
       results = this._data.filter(row => row.hanja && row.hanja.includes(text))

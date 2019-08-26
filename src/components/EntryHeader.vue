@@ -7,10 +7,15 @@
           <!-- <Star :word="entry"></Star> -->
           <Speak class="ml-1" :text="entry.hangul" />
         </div>
-        <div class="entry-word">
+        <div>
           <a :href="`#/dictionary/KEngDic/${entry.id}`">
-            <span data-hsk="outside">{{ entry.hangul }}</span>
+            <span class="entry-word" data-level="outside">{{
+              entry.hangul
+            }}</span>
           </a>
+        </div>
+        <div v-if="entry.hanja && entry.hanja !== 'NULL'" class="mt-1">
+          <span class="ml-2 entry-hanja">{{ entry.hanja }}</span>
         </div>
       </div>
     </div>
@@ -50,6 +55,10 @@ export default {
   margin: 0.5rem 0;
 }
 
+.entry-hanja {
+  font-size: 1.5rem;
+}
+
 @media (max-width: 768px) {
   .entry-word {
     font-size: 3rem;
@@ -61,7 +70,7 @@ export default {
   border: 1px solid #ccc;
 }
 
-.entry-word a {
+.entry-word-wrapper a {
   color: inherit;
   text-decoration: inherit;
 }
