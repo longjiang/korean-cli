@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="similarWords.length > 0">
-      <div class="label song-label">Compare with</div>
+      <div class="widget-title">Compare with</div>
       <div class="jumbotron-fluid bg-light p-4">
         <WordList
           collapse="10"
@@ -35,13 +35,7 @@ export default {
   },
   props: ['entry'],
   mounted() {
-    if (this.entry.simplified.length > 1) {
-      this.getReverse()
-      this.getHomonyms()
-    } else {
-      this.getOtherPronunciations()
-    }
-    this.getSimilarWords()
+    
   },
   watch: {
     similarWords() {
@@ -55,75 +49,6 @@ export default {
     }
   },
   methods: {
-    getOtherPronunciations() {
-      Helper.loaded(
-        (LoadedAnnotator, LoadedHSKCEDICT, loadedGrammar, LoadedHanzi) => {
-          LoadedHSKCEDICT.lookupSimplified(
-            words => {
-              for (let word of words) {
-                if (word.identifier !== this.entry.identifier) {
-                  this.similarWords.push(word)
-                }
-              }
-            },
-            [this.entry.simplified]
-          )
-        }
-      )
-    },
-    getReverse() {
-      const reverse = this.entry.simplified
-        .split('')
-        .reverse()
-        .join('')
-
-      Helper.loaded(
-        (LoadedAnnotator, LoadedHSKCEDICT, loadedGrammar, LoadedHanzi) => {
-          LoadedHSKCEDICT.lookupSimplified(
-            words => {
-              for (let word of words) {
-                this.similarWords.push(word)
-              }
-            },
-            [reverse]
-          )
-        }
-      )
-    },
-    getSimilarWords() {
-      Helper.loaded(
-        (LoadedAnnotator, LoadedHSKCEDICT, loadedGrammar, LoadedHanzi) => {
-          for (let definition of this.entry.definitions) {
-            LoadedHSKCEDICT.lookupByDefinition(
-              words => {
-                for (let word of words) {
-                  if (word.identifier !== this.entry.identifier) {
-                    this.similarWords.push(word)
-                  }
-                }
-              },
-              [definition.text]
-            )
-          }
-        }
-      )
-    },
-    getHomonyms() {
-      Helper.loaded(
-        (LoadedAnnotator, LoadedHSKCEDICT, loadedGrammar, LoadedHanzi) => {
-          LoadedHSKCEDICT.lookupPinyinFuzzy(
-            words => {
-              for (let word of words) {
-                if (word.identifier !== this.entry.identifier) {
-                  this.similarWords.push(word)
-                }
-              }
-            },
-            [this.entry.pinyin]
-          )
-        }
-      )
-    }
   }
 }
 </script>

@@ -13,7 +13,7 @@
       <a
         v-if="random"
         class="btn btn-secondary btn-random ml-2"
-        href="#/dictionary/kengdict/random"
+        href="#/dictionary/kengdic/random"
       >
         <font-awesome-icon icon="random" />
         <span> Random</span>
@@ -41,9 +41,11 @@
         :href="hrefFunc(suggestion)"
       >
         <span>
-          <span class="suggestion-word font-weight-bold mr-1">{{
-            suggestion.hangul
-          }}</span>
+          <span
+            class="suggestion-word font-weight-bold mr-1"
+            data-hsk="outside"
+            >{{ suggestion.hangul }}</span
+          >
           <span
             class="suggestion-english"
             v-if="suggestion.english"
@@ -56,7 +58,7 @@
         v-if="suggestions.length === 0 && type === 'dictionary'"
       >
         <span class="suggestion-not-found">
-          <b>&ldquo;{{ text }}&rdquo;</b> is not in CEDICT. Try looking it up in
+          <b>&ldquo;{{ text }}&rdquo;</b> is not in <a href="https://github.com/garfieldnate/kengdic">KEngDic</a>. Try looking it up in
           <a
             :href="`https://en.wiktionary.org/w/index.php?search=${text}`"
             target="blank"
@@ -105,13 +107,13 @@ export default {
       type: Function,
       default: function(entry) {
         if (entry) {
-          return `#/dictionary/kengdict/${entry.id}`
+          return `#/dictionary/kengdic/${entry.id}`
         }
       }
     },
     defaultURL: {
       type: Function,
-      default: text => `#/view`
+      default: () => `#/view`
     },
     placeholder: {
       default: 'Look up words here...'
@@ -142,8 +144,8 @@ export default {
     },
     text() {
       if (this.type === 'dictionary') {
-        Helper.loaded(LoadedKEngDict => {
-          this.suggestions = LoadedKEngDict.lookupFuzzy(this.text, 30)
+        Helper.loaded(LoadedKEngDic => {
+          this.suggestions = LoadedKEngDic.lookupFuzzy(this.text, 30)
         })
       }
     }

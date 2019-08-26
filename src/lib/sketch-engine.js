@@ -131,7 +131,7 @@ export default {
     omit: 'omission of word(s)'
   },
   corpname() {
-    return localStorage.getItem('czhCorpname') || 'zhtenten_lenoch'
+    return localStorage.getItem('kzhCorpname') || 'zhtenten_lenoch'
   },
   collocationDescription(word) {
     return {

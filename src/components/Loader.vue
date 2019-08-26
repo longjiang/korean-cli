@@ -20,18 +20,18 @@ export default {
       if (this.sticky) {
         return true
       } else {
-        return !this.LoadedKEngDict
+        return !this.LoadedKEngDic
       }
     }
   },
   data() {
     return {
-      LoadedKEngDict: undefined
+      LoadedKEngDic: undefined
     }
   },
   mounted() {
-    Helper.loaded(LoadedKEngDict => {
-      this.LoadedKEngDict = LoadedKEngDict
+    Helper.loaded(LoadedKEngDic => {
+      this.LoadedKEngDic = LoadedKEngDic
     })
   }
 }

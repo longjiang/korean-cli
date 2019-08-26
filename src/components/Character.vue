@@ -23,7 +23,10 @@
         class="mb-4 mr-4"
         style="float: left; clear: left"
       ></Decomposition>
-      <div class="character-parts" style="overflow: hidden; position: relative;">
+      <div
+        class="character-parts"
+        style="overflow: hidden; position: relative;"
+      >
         <h6>Character Decomposition</h6>
         <div class="part character-example" v-for="part in character.parts">
           <span class="part-part mr-2" v-if="part && part.character !== '？'">
@@ -105,36 +108,25 @@ export default {
   },
   methods: {
     getExamples() {
-      Helper.loaded(
-        (LoadedAnnotator, LoadedHSKCEDICT, LoadedGrammar, LoadedHanzi) => {
-          LoadedHSKCEDICT.lookupByCharacter(
-            words =>
-              (this.examples = words.filter(word => word.hsk !== 'outside')),
-            [this.character.character]
-          )
-        }
-      )
+      Helper.loaded(LoadedKEngDic => {
+        this.examples = LoadedKEngDic.lookupByCharacter(
+          this.character.character
+        )
+      })
     },
     getPartExamples(part) {
       part.getting = true
-      Helper.loaded(
-        (LoadedAnnotator, LoadedHSKCEDICT, LoadedGrammar, LoadedHanzi) => {
-          part.characters = LoadedHanzi.searchByRadical(part.character)
-          for (let character of part.characters.slice(0, 1)) {
-            character.examples = []
-            LoadedHSKCEDICT.lookupByCharacter(
-              words => {
-                part.getting = false
-                character.examples = words.filter(
-                  word => word.hsk !== 'outside'
-                )
-                this.charKey++
-              },
-              [character.character]
-            )
-          }
+      Helper.loaded((LoadedKEngDic, LoadedHanzi) => {
+        part.characters = LoadedHanzi.searchByRadical(part.character)
+        for (let character of part.characters.slice(0, 1)) {
+          character.examples = []
+          character.examples = LoadedKEngDic.lookupByCharacter(
+            character.character
+          )
+          part.getting = false
+          this.charKey++
         }
-      )
+      })
     },
     highlightCharacter(text, character, hsk) {
       if (text) {

@@ -2,32 +2,14 @@
   <!-- ANCHOR img/anchors/entry.png  -->
   <div class="entry-head-wrapper" v-if="entry">
     <div>
-      <div v-if="entry.measureWords" style="display:inline-block">
-        <div class="entry-pinyin measure-word-pinyin">
-          yī {{ entry.measureWords[0].pinyin }}
-          <Speak class="ml-1" :text="'一' + entry.measureWords[0].simplified" />
-        </div>
-        <div class="entry-word measure-word">
-          一<span class="simplified">{{
-            entry.measureWords[0].simplified
-          }}</span
-          ><span class="traditional">{{
-            entry.measureWords[0].traditional
-          }}</span>
-        </div>
-      </div>
       <div class="entry-word-wrapper" style="display:inline-block">
-        <div class="entry-pinyin">
-          <Star :word="entry"></Star>
-          {{ entry.pinyin }}
-          <Speak class="ml-1" :text="entry.simplified" />
+        <div>
+          <!-- <Star :word="entry"></Star> -->
+          <Speak class="ml-1" :text="entry.hangul" />
         </div>
         <div class="entry-word">
-          <a :href="`#/view/cedict/${entry.identifier}`">
-            <span v-bind:data-hsk="entry.hsk"
-              ><span class="simplified">{{ entry.simplified }}</span
-              ><span class="traditional">{{ entry.traditional }}</span></span
-            >
+          <a :href="`#/dictionary/KEngDic/${entry.id}`">
+            <span data-hsk="outside">{{ entry.hangul }}</span>
           </a>
         </div>
       </div>
@@ -57,7 +39,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .entry-pinyin {
   font-size: 1.1rem;
 }
@@ -98,5 +79,4 @@ export default {
   position: relative;
   bottom: -0.09em;
 }
-  
 </style>

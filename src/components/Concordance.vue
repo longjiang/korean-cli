@@ -1,6 +1,6 @@
 <template>
   <div :key="'concordance-' + concordanceKey">
-    <div class="label song-label">Sentences with “{{ text }}”</div>
+    <div class="widget-title">Sentences with “{{ text }}”</div>
     <div class="jumbotron-fluid bg-light p-4">
       <div v-if="examples && examples.length > 0">
         <ul

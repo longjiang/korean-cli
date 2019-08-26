@@ -11,8 +11,9 @@ export default new Router({
       redirect: '/dictionary'
     },
     {
-      path: '/dictionary',
+      path: '/dictionary/:method?/:args?',
       name: 'dictionary',
+      props: true,
       component: () => import('./views/Dictionary.vue'),
       meta: {
         title: 'Dictionary | Korean Zero to Hero',

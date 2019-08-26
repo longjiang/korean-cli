@@ -1,6 +1,6 @@
 <template>
   <div class="japanese">
-    <div class="label song-label">Learning Japanese?</div>
+    <div class="widget-title">Learning Japanese?</div>
     <div class="jumbotron-fluid bg-light p-4">
       <div v-if="words">
         <div v-for="word in words">
@@ -49,35 +49,27 @@ export default {
     }
   },
   created() {
-    Helper.loaded(
-      (
-        LoadedAnnotator,
-        LoadedHSKCEDICT,
-        loadedGrammar,
-        LoadedHanzi,
-        LoadedUnihan
-      ) => {
-        let variants = LoadedUnihan.variants(this.text)
-        for (let variant of variants) {
-          let kyujitai = new Kyujitai(error => {
-            this.shinjitai = kyujitai.decode(variant)
-            if (this.shinjitai) {
-              $.getJSON(
-                `${Config.wiki}items/edict?filter[kanji][eq]=${this.shinjitai}`,
-                response => {
-                  if (response.data.length > 0) {
-                    let data = response.data.filter(row => {
-                      return !this.words.find(word => word.kanji === row.kanji) // Make sure it's unique (2 kyujitai variants might turn out to be the same shinjitai)
-                    })
-                    this.words = this.words.concat(data)
-                  }
+    Helper.loaded((LoadedKEngDic, LoadedHanzi, LoadedUnihan) => {
+      let variants = LoadedUnihan.variants(this.text)
+      for (let variant of variants) {
+        let kyujitai = new Kyujitai(error => {
+          this.shinjitai = kyujitai.decode(variant)
+          if (this.shinjitai) {
+            $.getJSON(
+              `${Config.wiki}items/edict?filter[kanji][eq]=${this.shinjitai}`,
+              response => {
+                if (response.data.length > 0) {
+                  let data = response.data.filter(row => {
+                    return !this.words.find(word => word.kanji === row.kanji) // Make sure it's unique (2 kyujitai variants might turn out to be the same shinjitai)
+                  })
+                  this.words = this.words.concat(data)
                 }
-              )
-            }
-          })
-        }
+              }
+            )
+          }
+        })
       }
-    )
+    })
   }
 }
 </script>

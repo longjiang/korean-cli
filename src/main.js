@@ -3,6 +3,10 @@ import '@/assets/css/koreanzerotohero.css'
 import Vue from 'vue'
 import KoreanZeroToHero from './KoreanZeroToHero'
 import Loader from '@/components/Loader.vue'
+import Star from '@/components/Star'
+import Speak from '@/components/Speak'
+import ShowMoreButton from '@/components/ShowMoreButton'
+import StrokeOrder from '@/components/StrokeOrder'
 
 Vue.config.productionTip = false
 
@@ -10,12 +14,17 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import router from './router'
+import store from './store'
 
 library.add(fas)
 
 // Vue.component('Annotate', Annotate)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('Loader', Loader)
+Vue.component('Star', Star)
+Vue.component('Speak', Speak)
+Vue.component('StrokeOrder', StrokeOrder)
+Vue.component('ShowMoreButton', ShowMoreButton)
 
 // https://alligator.io/vuejs/vue-router-modify-head/
 // This callback runs before every route change, including on page load.
@@ -70,5 +79,6 @@ router.beforeEach((to, from, next) => {
 
 window.koreanZeroToHeroApp = new Vue({
   router,
+  store,
   render: h => h(KoreanZeroToHero)
 }).$mount('#koreanzerotohero')

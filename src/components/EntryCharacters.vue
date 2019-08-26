@@ -8,7 +8,7 @@
         :class="`col-md-${Math.max(4, Math.floor(12 / text.length))}`"
         v-for="(character, index) in characters"
       >
-        <div class="label song-label">Character</div>
+        <div class="widget-title">Character</div>
         <div class="jumbotron-fluid bg-light p-4">
           <Character
             :character="character"
@@ -49,7 +49,7 @@ export default {
   },
   mounted() {
     Helper.loaded(
-      (LoadedAnnotator, LoadedHSKCEDICT, loadedGrammar, LoadedHanzi) => {
+      (LoadedKEngDic, LoadedHanzi) => {
         this.characters = LoadedHanzi.getCharactersInWord(this.text)
       }
     )

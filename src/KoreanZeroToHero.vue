@@ -32,7 +32,9 @@
 <script>
 import $ from 'jquery'
 import Helper from '@/lib/helper'
-import KEngDict from '@/lib/kengdict'
+import KEngDic from '@/lib/kengdic'
+import Hanzi from '@/lib/hanzi'
+import Unihan from '@/lib/unihan'
 
 export default {
   components: {},
@@ -47,12 +49,14 @@ export default {
     })
   },
   beforeMount() {
-    window.kengdictLoads = KEngDict.load()
+    window.KEngDicLoads = KEngDic.load()
+    window.hanziLoads = Hanzi.load()
+    window.unihanLoads = Unihan.load()
   },
   mounted() {
     Helper.loaderMessage('App mounted.')
     window.KoreanZeroToHeroApp = this
-    Helper.loaded(LoadedKengDict => {
+    Helper.loaded(() => {
       this.loaded = true
     })
   }

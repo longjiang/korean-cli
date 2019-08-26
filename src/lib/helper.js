@@ -5,8 +5,10 @@ export default {
   loaderMessages: [],
   lastId: 0,
   async loaded(callback) {
-    let loadedKEngDict = await window.kengdictLoads
-    callback(loadedKEngDict)
+    let loadedKEngDic = await window.KEngDicLoads
+    let loadedHanzi = await window.hanziLoads
+    let loadedUnihan = await window.unihanLoads
+    callback(loadedKEngDic, loadedHanzi, loadedUnihan)
   },
   unescape(html) {
     return $('<div/>')
