@@ -1,14 +1,25 @@
 <template>
   <div id="koreanzerotohero">
-    <div class="container-fluid bg-dark pt-4 pb-4 pl-0 pr-0">
+    <div class="container-fluid bg-dark pt-4 pl-0 pr-0">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <img src="/img/logo-ko-zth-light.png" alt="Korean Zero to Hero" class="logo" />
+            <router-link to="/"
+              ><img
+                src="/img/logo-ko-zth-light.png"
+                alt="Korean Zero to Hero"
+                class="logo"
+            /></router-link>
+          </div>
+        </div>
+        <div class="row mt-3" v-cloak>
+          <div class="col-sm-12">
+            <Nav />
           </div>
         </div>
       </div>
     </div>
+    <SubNav class="pt-4" />
     <keep-alive>
       <router-view ref="routerView" />
     </keep-alive>
@@ -30,14 +41,18 @@
 </template>
 
 <script>
-
 import Helper from '@/lib/helper'
 import KEngDic from '@/lib/kengdic'
 import Hanzi from '@/lib/hanzi'
 import Unihan from '@/lib/unihan'
+import Nav from '@/components/Nav'
+import SubNav from '@/components/SubNav'
 
 export default {
-  components: {},
+  components: {
+    Nav,
+    SubNav
+  },
   data() {
     return {
       zerotohero: ''

@@ -20,7 +20,35 @@ export default new Router({
         metaTags: [
           {
             name: 'description',
-            content: 'Type Korean with the Korean script.'
+            content: 'Look up and learn Korean words.'
+          }
+        ]
+      }
+    },
+    {
+      path: '/saved-words',
+      name: 'saved-words',
+      component: () => import('./views/SavedWords.vue'),
+      meta: {
+        title: 'Saved Words | Chinese Zero to Hero',
+        metaTags: [
+          {
+            name: 'description',
+            content: 'Study, manage, import, export the words you saved.'
+          }
+        ]
+      }
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('./views/Settings.vue'),
+      meta: {
+        title: 'Settings | Korean Zero to Hero',
+        metaTags: [
+          {
+            name: 'description',
+            content: 'Change preferences: choose a different text corpus.'
           }
         ]
       }

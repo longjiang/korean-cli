@@ -1,6 +1,6 @@
 <template>
   <div class="main focus" v-cloak :key="'entry-' + entryKey">
-    <div class="jumbotron jumbotron-fluid pt-5 pb-3 mb-0">
+    <div class="jumbotron jumbotron-fluid bg-white pt-5 pb-3 mb-0">
       <div class="container focus-exclude">
         <div class="row">
           <div class="col-sm-12">
