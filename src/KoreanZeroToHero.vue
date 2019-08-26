@@ -1,5 +1,5 @@
 <template>
-  <div id="korean-zero-to-hero">
+  <div id="koreanzerotohero">
     <div class="container-fluid bg-dark pt-4 pb-4 pl-0 pr-0">
       <div class="container">
         <div class="row">
@@ -31,6 +31,8 @@
 
 <script>
 import $ from 'jquery'
+import Helper from '@/lib/helper'
+import KEngDict from '@/lib/kengdict'
 
 export default {
   components: {},
@@ -42,6 +44,16 @@ export default {
   created() {
     $.get('https://zerotohero.ca/partials/logos.html', response => {
       this.zerotohero = response
+    })
+  },
+  beforeMount() {
+    window.kengdictLoads = KEngDict.load()
+  },
+  mounted() {
+    Helper.loaderMessage('App mounted.')
+    window.KoreanZeroToHeroApp = this
+    Helper.loaded(LoadedKengDict => {
+      this.loaded = true
     })
   }
 }

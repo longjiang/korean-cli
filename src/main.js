@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '@/assets/css/koreanzerotohero.css'
 import Vue from 'vue'
 import KoreanZeroToHero from './KoreanZeroToHero'
+import Loader from '@/components/Loader.vue'
 
 Vue.config.productionTip = false
 
@@ -14,6 +15,7 @@ library.add(fas)
 
 // Vue.component('Annotate', Annotate)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('Loader', Loader)
 
 // https://alligator.io/vuejs/vue-router-modify-head/
 // This callback runs before every route change, including on page load.
