@@ -5,7 +5,7 @@
     <div class="row character-example-wrapper mt-4" v-if="characters">
       <!-- ANCHOR img/anchors/character.png -->
       <div
-        :class="`col-md-${Math.max(4, Math.floor(12 / text.length))}`"
+        class="col-sm-12 col-md-6 col-xl-4"
         v-for="(character, index) in characters"
       >
         <div class="widget-title">Character</div>
@@ -65,7 +65,7 @@ export default {
     }
   },
   updated() {
-    this.recalculateExampleColumns()
+    // this.recalculateExampleColumns()
   }
 }
 </script>
