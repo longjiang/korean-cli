@@ -2,7 +2,7 @@
   <!-- ANCHOR img/anchors/character-example.png -->
   <!-- FIXME Handle homonyms (e.g. 称 in 称心如意 should be chèn not chēng) -->
   <div class="entry-character" v-if="text" v-cloak>
-    <div class="row character-row mt-4" v-if="characters">
+    <div class="row character-row" v-if="characters">
       <!-- ANCHOR img/anchors/character.png -->
       <div
         class="character-column"

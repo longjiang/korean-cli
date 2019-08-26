@@ -7,35 +7,35 @@ export default {
     {
       language: 'Korean',
       name: 'CHILDES Korean Corpus',
-      words: '36,056',
+      words: 36056,
       code: 'childes_kor',
       note: 'Spoken.'
     },
     {
       language: 'Korean',
       name: 'Korean Web 2012 (koTenTen12)',
-      words: '461,196,240',
+      words: 461196240,
       code: 'kotenten12',
       note: 'Web.'
     },
     {
       language: 'Korean',
       name: 'Korean Web 2018 (koTenTen18)',
-      words: '1,668,851,720',
+      words: 1668851720,
       code: 'kotenten18',
       note: 'Featured.'
     },
     {
       language: 'Korean',
       name: 'OPUS2 Korean',
-      words: '374,850',
+      words: 374850,
       code: 'opus2_ko',
       note: 'Parallel. That means <b>English translation</b> is available.'
     },
     {
       language: 'Korean',
       name: 'Timestamped JSI web corpus 2014-2016 Korean',
-      words: '438,816,127',
+      words: 438816127,
       code: 'kor_jsi_newsfeed_1',
       note:
         'Diachronic. That means the corpus has time information about when the text was published or used.'
@@ -43,7 +43,7 @@ export default {
     {
       language: 'Korean',
       name: 'Timestamped JSI web corpus 2014-2019 Korean',
-      words: '1,102,664,442',
+      words: 1102664442,
       code: 'kor_jsi_newsfeed_virt',
       note:
         'Diachronic. That means the corpus has time information about when the text was published or used.'
@@ -51,7 +51,7 @@ export default {
     {
       language: 'Korean',
       name: 'Timestamped JSI web corpus 2019-05 Korean',
-      words: '24,695,254',
+      words: 24695254,
       code: 'kor_jsi_newsfeed_lastmonth',
       note:
         'Diachronic. That means the corpus has time information about when the text was published or used.'
@@ -59,7 +59,7 @@ export default {
     {
       language: 'Korean',
       name: 'Timestamped JSI web corpus 2019-06 Korean',
-      words: '22,934,151',
+      words: 22934151,
       code: 'kor_jsi_newsfeed_curmonth',
       note:
         'Diachronic. That means the corpus has time information about when the text was published or used.'

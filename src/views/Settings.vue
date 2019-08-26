@@ -18,7 +18,7 @@
               is a large collection of text written in a language, where we can
               extract collocations and example sentences.
               <a href="https://www.sketchengine.eu/">Sketch Engine</a>, our text
-              corpra provider, has a number of Chinese text corpra to select
+              corpra provider, has a number of Korean text corpra to select
               from. Depending on the corpus you choose, the example sentences
               and collocations you see will be different.
             </p>
@@ -51,26 +51,6 @@ export default {
   },
   data() {
     return {
-      showDefinition: localStorage.getItem('czhShowDefinition') === 'true',
-      showPinyin:
-        localStorage.getItem('czhHidePinyinExceptSaved') === 'true'
-          ? false
-          : true,
-      useTraditional: localStorage.getItem('czhUseTraditional') === 'true'
-    }
-  },
-  watch: {
-    showDefinition() {
-      localStorage.setItem('czhShowDefinition', this.showDefinition)
-      this.$parent.showDefinition = this.showDefinition
-    },
-    showPinyin() {
-      localStorage.setItem('czhHidePinyinExceptSaved', !this.showPinyin)
-      this.$parent.hidePinyinExceptSaved = !this.showPinyin
-    },
-    useTraditional() {
-      localStorage.setItem('czhUseTraditional', this.useTraditional === 'true')
-      this.$parent.useTraditional = this.useTraditional === 'true'
     }
   }
 }

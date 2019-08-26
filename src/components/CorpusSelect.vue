@@ -15,8 +15,7 @@
         <tr
           v-for="corpus in SketchEngine.corpra.filter(
             corpus =>
-              corpus.language === 'Chinese Simplified' &&
-              corpus.code !== 'guangwai'
+              corpus.language === 'Korean'
           )"
         >
           <td>
@@ -53,7 +52,7 @@ export default {
   },
   watch: {
     corpname() {
-      localStorage.setItem('czhCorpname', this.corpname)
+      localStorage.setItem('kzhCorpname', this.corpname)
       location.reload() // Otherwise users won't see the new collocations and example sentences, leaving them confused.
     }
   }

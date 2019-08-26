@@ -32,7 +32,7 @@
       <div class="text-center">
         <Loader class="mt-5" />
       </div>
-      <div class="container mt-5">
+      <div class="container mb-4">
         <div class="row">
           <div class="col-sm-12 text-center">
             <EntryHeader :entry="entry"></EntryHeader>
@@ -40,13 +40,6 @@
               class="mt-4"
               :definitions="[entry.english]"
             ></DefinitionsList>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row mt-5">
-          <div class="col-sm-12">
-            <EntryDisambiguation :entry="entry"></EntryDisambiguation>
           </div>
         </div>
       </div>
