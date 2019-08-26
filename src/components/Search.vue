@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import $ from 'jquery'
+
 import { setTimeout } from 'timers'
 import Helper from '@/lib/helper'
 

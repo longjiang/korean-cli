@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import $ from 'jquery'
+
 import Helper from '@/lib/helper'
 import KEngDic from '@/lib/kengdic'
 import Hanzi from '@/lib/hanzi'

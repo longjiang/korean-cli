@@ -1,4 +1,4 @@
-import $ from 'jquery'
+
 import Character from './character.js'
 import Config from './config.js'
 

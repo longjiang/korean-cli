@@ -32,7 +32,7 @@
       <div class="text-center">
         <Loader class="mt-5" />
       </div>
-      <div class="container">
+      <div class="container mt-5">
         <div class="row">
           <div class="col-sm-12 text-center">
             <EntryHeader :entry="entry"></EntryHeader>
@@ -105,9 +105,8 @@ import SearchCompare from '@/components/SearchCompare.vue'
 import DefinitionsList from '@/components/DefinitionsList'
 import Japanese from '@/components/Japanese'
 import Paginator from '@/components/Paginator'
-import StrokeOrder from '@/components/StrokeOrder'
 import Helper from '@/lib/helper'
-import $ from 'jquery'
+
 
 export default {
   components: {
@@ -120,8 +119,7 @@ export default {
     DefinitionsList,
     Paginator,
     Japanese,
-    WebImages,
-    StrokeOrder
+    WebImages
   },
   props: {
     method: {
@@ -150,7 +148,7 @@ export default {
       this.entryKey += 1
       this.entry = entry
       document.title = `${entry.hangul} (${entry.pinyin}) ${
-        entry.definitions[0].text
+        entry.english
       } | Korean Zero to Hero`
     },
     route() {

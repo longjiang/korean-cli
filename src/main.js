@@ -7,6 +7,7 @@ import Star from '@/components/Star'
 import Speak from '@/components/Speak'
 import ShowMoreButton from '@/components/ShowMoreButton'
 import StrokeOrder from '@/components/StrokeOrder'
+import WordList from '@/components/WordList'
 
 Vue.config.productionTip = false
 
@@ -25,6 +26,7 @@ Vue.component('Star', Star)
 Vue.component('Speak', Speak)
 Vue.component('StrokeOrder', StrokeOrder)
 Vue.component('ShowMoreButton', ShowMoreButton)
+Vue.component('WordList', WordList)
 
 // https://alligator.io/vuejs/vue-router-modify-head/
 // This callback runs before every route change, including on page load.

@@ -41,7 +41,7 @@
 import WordPhotos from '@/lib/word-photos'
 import Config from '@/lib/config'
 import Vue from 'vue'
-import $ from 'jquery'
+
 
 export default {
   props: {

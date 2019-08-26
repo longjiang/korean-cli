@@ -1,4 +1,4 @@
-import $ from 'jquery'
+
 import Helper from './helper'
 import Config from './config'
 

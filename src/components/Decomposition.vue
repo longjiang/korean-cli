@@ -58,7 +58,7 @@ const decompositionTemplate = {
 
 import Helper from '@/lib/helper'
 import Hanzi from '@/lib/hanzi'
-import $ from 'jquery'
+
 
 export default {
   props: ['char'],

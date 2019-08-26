@@ -43,6 +43,9 @@ export default {
   random() {
     return this.randomArrayItem(this._data)
   },
+  lookupByCharacter(char) {
+    return this._data.filter(row => row.hanja && row.hanja.includes(char))
+  },
   lookupHangul(hangul) {
     const candidates = this._data
       .filter(row => {

@@ -12,39 +12,25 @@
         <Star v-if="word && star === true" :word="word" class="mr-1"></Star>
         <a
           v-if="compareWith"
-          :href="
-            `#/compare/cedict/${compareWith.identifier},${word.identifier}`
-          "
+          :href="`#/compare/kengdic/${compareWith.id},${word.id}`"
           class="btn btn-small mr-2"
           >Compare</a
         >
-        <a
-          v-if="word"
-          :href="
-            hsk
-              ? `#/view/hsk/${word.hskId}`
-              : `#/view/cedict/${word.identifier}`
-          "
-        >
+        <a v-if="word" :href="`#/dictionary/kengdic/${word.id}`">
           <span
             class="wordlist-item-word"
-            :data-hsk="word.hsk"
+            :data-hsk="outside"
             v-if="!highlight"
-            ><span class="simplified">{{ word.simplified }}</span
-            ><span class="traditional">{{ word.traditional }}</span></span
+            >{{ word.hanja }}</span
           ><span
             class="wordlist-item-word"
             v-if="highlight"
-            v-html="Helper.highlight(word.simplified, highlight, word.hsk)"
+            v-html="Helper.highlight(word.hanja, highlight, 'outside')"
           ></span
-          ><span class="wordlist-item-word" v-if="traditional === true"
-            >(<span class="traditional">{{ word.simplified }}</span
-            ><span class="simplified">{{ word.traditional }}</span
-            >)</span
-          ><span class="wordlist-item-pinyin ml-1">{{ word.pinyin }}</span
+          ><span class="wordlist-item-pinyin ml-1">{{ word.hangul }}</span
           >&nbsp;
-          <span v-if="word.definitions" class="wordlist-item-english">
-            {{ word.definitions[0].text }}
+          <span v-if="word.english && word.english !== 'NULL'" class="wordlist-item-english">
+            {{ word.english }}
           </span>
         </a>
       </li>
