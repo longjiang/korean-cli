@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     pinyinArr() {
-      return this.pinyin.split(' ')
+      return this.pinyin.split('')
     }
   },
   data() {
