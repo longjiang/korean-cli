@@ -111,7 +111,7 @@ export default {
       Helper.loaded(LoadedKEngDic => {
         this.examples = LoadedKEngDic.lookupByCharacter(
           this.character.character
-        )
+        ).filter(example => example.english && example.english !== 'NULL')
       })
     },
     getPartExamples(part) {

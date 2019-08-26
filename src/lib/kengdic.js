@@ -9,7 +9,9 @@ export default {
         download: true,
         header: true,
         complete: results => {
-          this._data = results.data
+          this._data = results.data.sort((a, b) =>
+            a.hangul && b.hangul ? a.hangul.length - b.hangul.length : 0
+          )
           resolve(this)
         }
       })
@@ -47,11 +49,9 @@ export default {
     return this._data.filter(row => row.hanja && row.hanja.includes(char))
   },
   lookupHangul(hangul) {
-    const candidates = this._data
-      .filter(row => {
-        return row.hangul === hangul
-      })
-      .sort((a, b) => b.english.length - a.english.length)
+    const candidates = this._data.filter(row => {
+      return row.hangul === hangul
+    })
     return candidates
   },
   lookupByPattern(pattern) {
@@ -79,7 +79,6 @@ export default {
       })
     }
     if (results) {
-      results = results.sort((a, b) => b.english.length - a.english.length)
       if (limit) {
         results = results.slice(0, limit)
       }

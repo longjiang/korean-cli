@@ -85,7 +85,11 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <Japanese class="mt-5 mb-5" :text="entry.hanja" />
+            <Japanese
+              v-if="entry.hanja && entry.hanja !== 'NULL'"
+              class="mt-5 mb-5"
+              :text="entry.hanja"
+            />
           </div>
         </div>
       </div>
@@ -106,7 +110,6 @@ import DefinitionsList from '@/components/DefinitionsList'
 import Japanese from '@/components/Japanese'
 import Paginator from '@/components/Paginator'
 import Helper from '@/lib/helper'
-
 
 export default {
   components: {
