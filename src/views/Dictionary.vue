@@ -151,10 +151,14 @@ export default {
       $('#koreanzerotohero')[0].scrollIntoView()
       if (this.method && this.args) {
         if (this.method === 'kengdic') {
-          Helper.loaded(LoadedKEngDic => {
-            let entry = LoadedKEngDic.get(this.args)
-            this.show(entry)
-          })
+          if (this.args === 'random') {
+            this.random()
+          } else {
+            Helper.loaded(LoadedKEngDic => {
+              let entry = LoadedKEngDic.get(this.args)
+              this.show(entry)
+            })
+          }
         } else {
           if (!this.entry) {
             this.random()
@@ -163,10 +167,9 @@ export default {
       }
     },
     random() {
-      Helper.loaded((LoadedAnnotator, LoadedHSKCEDICT) => {
-        LoadedHSKCEDICT.random(
-          entry => (location.hash = `/dictionary/KEngDic/${entry.id}`)
-        )
+      Helper.loaded(LoadedKEngDic => {
+        let entry = LoadedKEngDic.random()
+        location.hash = `/dictionary/kengdic/${entry.id}`
       })
     }
   },

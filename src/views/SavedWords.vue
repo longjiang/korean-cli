@@ -11,37 +11,19 @@
         <div class="my-words-tools mt-2 mb-2 text-right">
           <button
             class="upload-list btn btn-primary"
-            v-on:click="showImportClick"
-          >
-            <i class="glyphicon glyphicon-cloud-upload"></i> Import</button
-          >&nbsp;
-          <button
-            class="upload-list btn btn-primary"
             v-on:click="showExportClick"
             :disabled="this.savedWords.length <= 0"
           >
             <i class="glyphicon glyphicon-cloud-download"></i> Export CSV</button
           >&nbsp;
-          <button 
-            class="remove-all btn btn-danger" 
+          <button
+            class="remove-all btn btn-danger"
             v-on:click="removeAllClick"
             :disabled="this.savedWords.length <= 0"
           >
             <i class="glyphicon glyphicon-trash"></i>
             Clear
           </button>
-          <div class="import-wrapper hidden">
-            <textarea
-              id="import-textarea"
-              class="mt-2 mb-2 form-control"
-              cols="30"
-              rows="10"
-              placeholder="Paste your list or text here to add all words to your 'saved words'"
-            ></textarea>
-            <button class="btn btn-success btn-block" v-on:click="importClick">
-              Import
-            </button>
-          </div>
           <div class="export-wrapper hidden text-left mt-4">
             <p>
               <b>Copy</b> the text below and <b>paste</b> into your spreadsheet
@@ -106,13 +88,13 @@ export default {
     return {
       loaded: false,
       savedWords: [],
-      selectedCsvOptions: ['simplified', 'traditional', 'pinyin', 'definitions', 'measureWords'],
+      selectedCsvOptions: ['hangul', 'hanja', 'definitions'],
       csvOptions: [
-          { text: 'Simplified', value: 'simplified' },
-          { text: 'Traditional', value: 'traditional' },
-          { text: 'Pinyin', value: 'pinyin' },
-          { text: 'Definitions', value: 'definitions' },
-          { text: 'Measure Words', value: 'measureWords' }
+        { text: 'Simplified', value: 'simplified' },
+        { text: 'Traditional', value: 'traditional' },
+        { text: 'Pinyin', value: 'pinyin' },
+        { text: 'Definitions', value: 'definitions' },
+        { text: 'Measure Words', value: 'measureWords' }
       ]
     }
   },
@@ -124,74 +106,49 @@ export default {
       this.updateWords()
     },
     selectedCsvOptions() {
-      $('#export-textarea').val(this.csv());
-    },
+      $('#export-textarea').val(this.csv())
+    }
   },
   mounted() {
-    this.updateWords();
+    this.updateWords()
   },
   methods: {
     updateWords() {
-      this.savedWords = [];
+      this.savedWords = []
 
-      Helper.loaded(
-        (LoadedAnnotator, LoadedHSKCEDICT, loadedGrammar, LoadedHanzi) => {
-          this.loaded = true;
-          this.savedWordIds.forEach((word) => {
-            const identifier = word.join(',').replace(/ /g, '_');
-            LoadedHSKCEDICT.getByIdentifier(
-              entry => this.savedWords.push(entry),
-              [identifier],
-            );
-          });
-        }
-      );
+      Helper.loaded(LoadedKEngDic => {
+        this.loaded = true
+        this.savedWordIds.forEach(id => {
+          this.savedWords.push(LoadedKEngDic.get(id))
+        })
+      })
     },
     csv() {
       if (this.savedWords.length <= 0) {
-        return '';
+        return ''
       }
 
-      return (
-        this.savedWords.map((word) => {
-          let textToDisplay = '';
+      return this.savedWords
+        .map(word => {
+          let textToDisplay = ''
 
-          if (this.selectedCsvOptions.includes('simplified')) {
-            textToDisplay += `${word.simplified}\t`;
-          }  
-          
-          if (this.selectedCsvOptions.includes('traditional')) {
-            textToDisplay += `${word.traditional}\t`;
-          }    
-          
-          if (this.selectedCsvOptions.includes('pinyin')) {
-            textToDisplay += `${word.pinyin}\t`;
-          }       
-          
+          if (this.selectedCsvOptions.includes('hangul')) {
+            textToDisplay += `${word.hangul}\t`
+          }
+
+          if (this.selectedCsvOptions.includes('hanja')) {
+            textToDisplay += `${word.hanja}\t`
+          }
+
           if (this.selectedCsvOptions.includes('definitions')) {
-            const definitions = word.definitions.map(function(definition) {
-              return definition.text
-            }).join(', ');
+            const definitions = word.english
 
-            textToDisplay += `${definitions}\t`;
+            textToDisplay += `${definitions}\t`
           }
 
-          if (this.selectedCsvOptions.includes('measureWords')) {
-            const hasMeasureWords = word.measureWords && word.measureWords.length > 0;
-            let measureWords = '';
-            
-            if (hasMeasureWords) {
-              measureWords = word.measureWords.map((measureWord) => {
-                return `${measureWord.simplified} (${measureWord.traditional}, ${measureWord.pinyin})`
-              }).join(', ');
-            }
-
-            textToDisplay += `${measureWords}\t`
-          }
-
-          return textToDisplay;
-        }).join('\n')
-      );
+          return textToDisplay
+        })
+        .join('\n')
     },
     showImportClick() {
       $('.import-wrapper').toggleClass('hidden')
@@ -205,32 +162,9 @@ export default {
         'Are you sure you want to remove all your saved words?'
       )
       if (confirmed) {
-        this.$store.dispatch('removeAllSavedWords');
-        $('.export-wrapper').toggleClass('hidden', true);
-
+        this.$store.dispatch('removeAllSavedWords')
+        $('.export-wrapper').toggleClass('hidden', true)
       }
-    },
-    importClick() {
-      const lines = $('#import-textarea')
-        .val()
-        .split('\n')
-      // eslint-disable-next-line no-undef
-      for (let line of lines) {
-        Helper.loaded(
-          (LoadedAnnotator, LoadedHSKCEDICT, loadedGrammar, LoadedHanzi) => {
-            LoadedAnnotator.annotateText(line, annotated => {
-              for (let candidates of annotated) {
-                for (let candidate of candidates) {
-                  if (candidate.pinyin) {
-                    this.$store.dispatch('addSavedWord', candidate.identifier);
-                  }
-                }
-              }
-            })
-          }
-        )
-      }
-      $('.import-wrapper').addClass('hidden')
     }
   }
 }

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -9,24 +8,17 @@ export default new Vuex.Store({
     savedWords: JSON.parse(localStorage.getItem('savedKEngDicWords')) || []
   },
   mutations: {
-    ADD_SAVED_WORD(state, identifier) {
-      if (
-        !state.savedWords.find(
-          item => item.join(',').replace(/ /g, '_') === identifier
-        )
-      ) {
-        state.savedWords.push(identifier.replace(/_/g, ' ').split(','))
+    ADD_SAVED_WORD(state, id) {
+      if (!state.savedWords.find(item => item === id)) {
+        state.savedWords.push(id)
         localStorage.setItem(
           'savedKEngDicWords',
           JSON.stringify(state.savedWords)
         )
       }
     },
-    REMOVE_SAVED_WORD(state, identifier) {
-      const keepers = state.savedWords.filter(
-        savedKEngDicWord =>
-          savedKEngDicWord.join(',').replace(/ /g, '_') !== identifier
-      )
+    REMOVE_SAVED_WORD(state, id) {
+      const keepers = state.savedWords.filter(item => item !== id)
       state.savedWords = keepers
       localStorage.setItem('savedKEngDicWords', JSON.stringify(keepers))
     },
@@ -36,13 +28,13 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addSavedWord({ commit, dispatch }, identifier) {
-      // identifier = 'traditional,pinyin,index'
-      commit('ADD_SAVED_WORD', identifier)
+    addSavedWord({ commit, dispatch }, id) {
+      // id = 'traditional,pinyin,index'
+      commit('ADD_SAVED_WORD', id)
       dispatch('updateSavedWordsDisplay')
     },
-    removeSavedWord({ commit, dispatch }, identifier) {
-      commit('REMOVE_SAVED_WORD', identifier)
+    removeSavedWord({ commit, dispatch }, id) {
+      commit('REMOVE_SAVED_WORD', id)
       dispatch('updateSavedWordsDisplay')
     },
     removeAllSavedWords({ commit, dispatch }) {
@@ -56,23 +48,12 @@ export default new Vuex.Store({
       }, 500)
     },
     updateSavedWordsDisplay({ dispatch, getters }) {
-      $('.word-block[data-identifiers]').each(function() {
-        let identifiers = JSON.parse(unescape($(this).attr('data-identifiers')))
-        $(this).removeClass('saved')
-        for (let identifier of identifiers) {
-          if (getters.hasSavedWord(identifier)) {
-            $(this).addClass('saved')
-          }
-        }
-      })
       dispatch('blinkedSavedWordsButton')
     }
   },
   getters: {
-    hasSavedWord: state => identifier => {
-      let yes = state.savedWords.find(item => {
-        return item.join(',').replace(/ /g, '_') === identifier
-      })
+    hasSavedWord: state => id => {
+      let yes = state.savedWords.find(item => item === id)
       return yes
     },
     savedWordCount: state => () => {

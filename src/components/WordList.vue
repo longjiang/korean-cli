@@ -19,15 +19,15 @@
         <a v-if="word" :href="`#/dictionary/kengdic/${word.id}`">
           <span
             class="wordlist-item-word"
-            :data-hsk="outside"
-            v-if="!highlight"
+            data-level="outside"
+            v-if="!highlight && word.hanja && word.hanja !== 'NULL'"
             >{{ word.hanja }}</span
           ><span
             class="wordlist-item-word"
-            v-if="highlight"
+            v-if="highlight && word.hanja && word.hanja !== 'NULL'"
             v-html="Helper.highlight(word.hanja, highlight, 'outside')"
           ></span
-          ><span class="wordlist-item-pinyin ml-1">{{ word.hangul }}</span
+          ><span class="wordlist-item-word ml-1">{{ word.hangul }}</span
           >&nbsp;
           <span v-if="word.english && word.english !== 'NULL'" class="wordlist-item-english">
             {{ word.english }}
@@ -69,7 +69,7 @@ export default {
     star: {
       default: true
     },
-    hsk: {
+    level: {
       default: false
     }
   }

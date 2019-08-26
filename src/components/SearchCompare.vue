@@ -11,7 +11,7 @@
     <button class="btn btn-compare ml-2" @click="compareClick">
       <span v-if="dCompare"><i class="glyphicon glyphicon-remove-sign"></i></span
       ><span v-if="!dCompare"
-        ><font-awesome-icon icon="question" />
+        ><font-awesome-icon icon="adjust" />
         <span class="compare-btn-text ml-1">Compare</span></span
       >
     </button>

@@ -3,8 +3,8 @@
   <div class="entry-head-wrapper" v-if="entry">
     <div>
       <div class="entry-word-wrapper" style="display:inline-block">
-        <div>
-          <!-- <Star :word="entry"></Star> -->
+        <div class="mb-2">
+          <Star :word="entry"></Star>
           <Speak class="ml-1" :text="entry.hangul" />
         </div>
         <div>
@@ -77,15 +77,5 @@ export default {
 
 .entry-head-wrapper {
   position: relative;
-}
-
-.entry-head-wrapper .toggle-saved-word {
-  padding: 0;
-  background: none;
-  border: none;
-  margin: 0;
-  color: #ffe597;
-  position: relative;
-  bottom: -0.09em;
 }
 </style>

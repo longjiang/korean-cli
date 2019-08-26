@@ -1,6 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css'
+import '@/vendor/css-spinners/spinner/heartbeat.css'
+import '@/vendor/css-spinners/spinner/inner-circles.css'
 import '@/assets/css/koreanzerotohero.css'
 import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
 import KoreanZeroToHero from './KoreanZeroToHero'
 import Loader from '@/components/Loader.vue'
 import Star from '@/components/Star'
@@ -9,14 +12,18 @@ import ShowMoreButton from '@/components/ShowMoreButton'
 import StrokeOrder from '@/components/StrokeOrder'
 import WordList from '@/components/WordList'
 
+Vue.use(BootstrapVue)
+
 Vue.config.productionTip = false
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 import router from './router'
 import store from './store'
 
+library.add(far)
 library.add(fas)
 
 // Vue.component('Annotate', Annotate)

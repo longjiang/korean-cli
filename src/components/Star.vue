@@ -6,7 +6,7 @@
       v-on:click="removeWordClick"
       title="Remove word"
     >
-      <i class="glyphicon glyphicon-star"></i>
+      <font-awesome-icon icon="star" />
     </button>
     <button
       class="star add-word"
@@ -14,7 +14,7 @@
       v-on:click="saveWordClick"
       title="Add word"
     >
-      <i class="glyphicon glyphicon-star-empty"></i>
+      <font-awesome-icon :icon="['far', 'star']" />
     </button>
   </div>
 </template>
@@ -32,13 +32,13 @@ export default {
   },
   methods: {
     saved() {
-      return this.$store.getters.hasSavedWord(this.word.identifier)
+      return this.$store.getters.hasSavedWord(this.word.id)
     },
     saveWordClick() {
-      this.$store.dispatch('addSavedWord', this.word.identifier)
+      this.$store.dispatch('addSavedWord', this.word.id)
     },
     removeWordClick() {
-      this.$store.dispatch('removeSavedWord', this.word.identifier)
+      this.$store.dispatch('removeSavedWord', this.word.id)
     }
   }
 }
@@ -49,7 +49,6 @@ export default {
 .toggle-saved-word {
   display: inline-block;
   position: relative;
-  bottom: -0.09em;
   padding: 0;
   margin: 0;
   background: none;
