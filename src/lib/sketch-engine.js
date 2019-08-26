@@ -124,7 +124,7 @@ export default {
               ' ' +
               Line.Kwic[0].str +
               ' ' +
-              Line.Right.map(item => (item ? item.str : '')).join('')
+              Line.Right.map(item => (item ? item.str : '')).join(' ')
             line = line.replace(/ ([,.])/g, '$1')
             if (line.length > term.length + 4) {
               let parallelLine = {
