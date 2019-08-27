@@ -28,10 +28,28 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <div class="zerotohero" v-html="zerotohero"></div>
+            <div class="zerotohero">
+              <a
+                v-for="language in languages"
+                :href="language.url"
+                target="_blank"
+                class="mr-4"
+                ><img
+                  :src="
+                    `${Config.server}img/logo-${language.code}-zth-light.png`
+                  "
+                  :alt="`${language.name} Zero to Hero`"
+                  class="logo-footer"
+              /></a>
+            </div>
             <hr class="border-light mt-0" style="opacity: 0.5" />
             <p>
               <b>Zero to Hero Education, Canada.</b>
+            </p>
+            <p>
+              <b>Credits:</b> Korean-English dictionary data from Joe Speigle's
+              open-source project
+              <a href="https://github.com/garfieldnate/kengdic">kengdic</a>.
             </p>
           </div>
         </div>
@@ -41,6 +59,7 @@
 </template>
 
 <script>
+import Config from '@/lib/config'
 import Helper from '@/lib/helper'
 import KEngDic from '@/lib/kengdic'
 import Hanzi from '@/lib/hanzi'
@@ -55,15 +74,14 @@ export default {
   },
   data() {
     return {
-      zerotohero: ''
+      languages: [],
+      Config
     }
   },
-  created() {
-    $.get('https://zerotohero.ca/partials/logos.html', response => {
-      this.zerotohero = response
-    })
-  },
   beforeMount() {
+    $.getJSON(`${Config.server}data/languages.json`, response => {
+      this.languages = response
+    })
     window.KEngDicLoads = KEngDic.load()
     window.hanziLoads = Hanzi.load()
     window.unihanLoads = Unihan.load()
