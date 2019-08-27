@@ -24,7 +24,7 @@
         :to="{ name: 'settings' }"
         title="Settings"
       >
-        <i class="glyphicon glyphicon-cog"></i>Settings
+        <font-awesome-icon icon="cog" />Settings
       </router-link>
     </nav>
   </div>

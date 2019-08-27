@@ -19,7 +19,7 @@
         <font-awesome-icon icon="font" />Lookup Words
       </router-link>
       <router-link class="secondary-menu-item" :to="{ name: 'saved-words' }">
-        <i class="glyphicon glyphicon-star"></i>Saved
+        <font-awesome-icon icon="star" />Saved
         <span class="saved-words-count" v-cloak>
           {{ savedWordsCount() }}
         </span>
