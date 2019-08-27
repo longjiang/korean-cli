@@ -3,7 +3,7 @@
     <div class="container-fluid bg-dark pt-4 pl-0 pr-0">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-12 text-center">
             <router-link to="/"
               ><img
                 src="/img/logo-ko-zth-light.png"
