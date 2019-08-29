@@ -77,7 +77,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-6">
+            <Chinese
+              v-if="entry.hanja && entry.hanja !== 'NULL'"
+              class="mt-5 mb-5"
+              :text="entry.hanja"
+            />
+          </div>
+          <div class="col-sm-6">
             <Japanese
               v-if="entry.hanja && entry.hanja !== 'NULL'"
               class="mt-5 mb-5"
@@ -100,6 +107,7 @@ import EntryHeader from '@/components/EntryHeader.vue'
 import WebImages from '@/components/WebImages.vue'
 import SearchCompare from '@/components/SearchCompare.vue'
 import DefinitionsList from '@/components/DefinitionsList'
+import Chinese from '@/components/Chinese'
 import Japanese from '@/components/Japanese'
 import Paginator from '@/components/Paginator'
 import Helper from '@/lib/helper'
@@ -114,6 +122,7 @@ export default {
     EntryHeader,
     DefinitionsList,
     Paginator,
+    Chinese,
     Japanese,
     WebImages
   },
