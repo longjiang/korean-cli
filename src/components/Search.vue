@@ -43,8 +43,13 @@
         <span>
           <span
             class="suggestion-word font-weight-bold mr-1"
-            data-hsk="outside"
+            data-level="outside"
             >{{ suggestion.hangul }}</span
+          >
+          <span
+            class="mr-1"
+            v-if="suggestion.hanja"
+            >[{{ suggestion.hanja }}]</span
           >
           <span
             class="suggestion-english"

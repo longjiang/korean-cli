@@ -49,24 +49,13 @@
       <hr />
       <div>
         <p>Search for more sentences at</p>
-
         <a
           :href="
-            `http://www.jukuu.com/search.php?q=${encodeURIComponent(text)}`
-          "
-          class="mr-4"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src="img/logo-jukuu.gif" alt="Jukuu (句酷)" class="logo-small" />
-        </a>
-        <a
-          :href="
-            `https://www.linguee.com/english-chinese/search?source=auto&query=${text}`
+            `https://endic.naver.com/search.nhn?sLn=en&searchOption=all&query=${text}`
           "
           target="_blank"
         >
-          <img src="img/logo-linguee.png" alt="Linguee" class="logo-small" />
+          <img src="img/logo-naver.svg" alt="Naver" class="logo-small" />
         </a>
       </div>
     </div>
