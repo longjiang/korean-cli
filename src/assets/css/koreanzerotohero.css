@@ -29,6 +29,11 @@ body {
   object-fit: cover;
 }
 
+.sticky {
+  position: sticky;
+  z-index: 2;
+  top: 1rem;
+}
 
 .highlight {
   font-weight: bold;

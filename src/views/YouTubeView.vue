@@ -131,13 +131,15 @@ export default {
                 }
                 this.korean.push(line)
               }
-              this.hasSubtitles = true
+              if(this.korean.length > 0) {
+                this.hasSubtitles = true
+              }
+              this.loading = false
             }
           )
         )
       }
       await Promise.all(promises)
-      console.log('getting english')
       await Helper.scrape(
         `https://www.youtube.com/api/timedtext?v=${this.args}&lang=${'ko'}&fmt=srv3&tlang=en`,
         $html => {
@@ -150,7 +152,6 @@ export default {
           }
         }
       )
-      this.loading = false
     }
   },
   mounted() {
