@@ -11,6 +11,7 @@ import Speak from '@/components/Speak'
 import ShowMoreButton from '@/components/ShowMoreButton'
 import StrokeOrder from '@/components/StrokeOrder'
 import WordList from '@/components/WordList'
+import Annotate from '@/components/Annotate'
 
 Vue.use(BootstrapVue)
 
@@ -34,6 +35,7 @@ Vue.component('Speak', Speak)
 Vue.component('StrokeOrder', StrokeOrder)
 Vue.component('ShowMoreButton', ShowMoreButton)
 Vue.component('WordList', WordList)
+Vue.component('Annotate', Annotate)
 
 // https://alligator.io/vuejs/vue-router-modify-head/
 // This callback runs before every route change, including on page load.

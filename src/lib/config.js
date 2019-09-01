@@ -11,6 +11,7 @@ export default {
   proxy: dictionaryServer + 'proxy.php',
   jsonProxy: dictionaryServer + 'json-proxy.php',
   scrape: dictionaryServer + 'scrape.php',
+  scrape2: dictionaryServer + 'scrape2.php',
   imageProxy: dictionaryServer + 'image.php',
   listPhotos: dictionaryServer + 'list-photos.php',
   savePhoto: dictionaryServer + 'save-photo.php',

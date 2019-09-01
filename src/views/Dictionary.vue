@@ -92,6 +92,11 @@
             />
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <EntryYouTube :text="entry.hangul" class="mb-5" />
+          </div>
+        </div>
       </div>
       <!-- <InstagramButton :entry="entry" class="mb-5"></InstagramButton> -->
     </div>
@@ -110,6 +115,7 @@ import DefinitionsList from '@/components/DefinitionsList'
 import Chinese from '@/components/Chinese'
 import Japanese from '@/components/Japanese'
 import Paginator from '@/components/Paginator'
+import EntryYouTube from '@/components/EntryYouTube.vue'
 import Helper from '@/lib/helper'
 
 export default {
@@ -124,7 +130,8 @@ export default {
     Paginator,
     Chinese,
     Japanese,
-    WebImages
+    WebImages,
+    EntryYouTube
   },
   props: {
     method: {

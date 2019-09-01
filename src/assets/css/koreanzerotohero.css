@@ -17,6 +17,19 @@ body {
   max-height: 4rem;
 }
 
+.aspect-wrapper {
+  padding-bottom: 56.25%;
+  position: relative;
+}
+
+.aspect {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+}
+
+
 .highlight {
   font-weight: bold;
 }
@@ -66,8 +79,8 @@ a:hover {
   min-height: calc(100vh - 30rem);
 }
 
-#chinesezerotohero:not(.show-simplified) .simplified,
-#chinesezerotohero:not(.show-traditional) .traditional {
+#koreanzerotohero:not(.show-simplified) .simplified,
+#koreanzerotohero:not(.show-traditional) .traditional {
   display: none;
 }
 
