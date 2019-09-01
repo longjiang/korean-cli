@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <nav
       class="secondary-menu text-center"
       v-if="
@@ -18,11 +17,24 @@
       <router-link class="secondary-menu-item" :to="{ name: 'dictionary' }">
         <font-awesome-icon icon="font" />Lookup Words
       </router-link>
+      <router-link class="secondary-menu-item" :to="{ name: 'phrase' }">
+        <font-awesome-icon icon="quote-left" />Lookup Phrases
+      </router-link>
       <router-link class="secondary-menu-item" :to="{ name: 'saved-words' }">
         <font-awesome-icon icon="star" />Saved
-        <span class="saved-words-count" v-cloak>
-          {{ savedWordsCount() }}
-        </span>
+        <span class="saved-words-count" v-cloak>{{ savedWordsCount() }}</span>
+      </router-link>
+    </nav>
+
+    <nav
+      class="secondary-menu text-center"
+      v-if="
+        $route.name &&
+          ($route.name.startsWith('youtube') || $route.name === 'music')
+      "
+    >
+      <router-link class="secondary-menu-item" :to="{ name: 'youtube-browse' }">
+        <font-awesome-icon :icon="['fab', 'youtube']" />Study YouTube Subtitles
       </router-link>
     </nav>
   </div>

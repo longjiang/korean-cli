@@ -20,6 +20,18 @@
         <font-awesome-icon icon="book" />Dictionary
       </router-link>
       <router-link
+        :class="{
+          tab: true,
+          'router-link-active':
+            $route.name &&
+            ($route.name.startsWith('youtube') || $route.name === 'music')
+        }"
+        :to="{ name: 'youtube-browse' }"
+        title="Learn Korean by watching YouTube videos."
+      >
+        <font-awesome-icon icon="video" />Theater
+      </router-link>
+      <router-link
         class="tab tab-info"
         :to="{ name: 'settings' }"
         title="Settings"

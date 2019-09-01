@@ -26,6 +26,21 @@ export default new Router({
       }
     },
     {
+      path: '/phrase/:method?/:args?',
+      name: 'phrase',
+      component: () => import('./views/Phrase.vue'),
+      props: true,
+      meta: {
+        title: 'Phrase | Korean Zero to Hero',
+        metaTags: [
+          {
+            name: 'description',
+            content: 'See how Korean phrases are used in real context..'
+          }
+        ]
+      }
+    },
+    {
       path: '/saved-words',
       name: 'saved-words',
       component: () => import('./views/SavedWords.vue'),
