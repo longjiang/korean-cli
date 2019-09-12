@@ -5,7 +5,7 @@
       <div class="entry-word-wrapper" style="display:inline-block">
         <div class="mb-2">
           <Star :word="entry"></Star>
-          <Speak class="ml-1" :text="entry.accented" />
+          <Speak class="ml-1" :text="entry.hangul" />
         </div>
         <div>
           <a :href="`#/dictionary/KEngDic/${entry.id}`">
