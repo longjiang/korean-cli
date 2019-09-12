@@ -10,7 +10,7 @@
         <div>
           <a :href="`#/dictionary/KEngDic/${entry.id}`">
             <span class="entry-word" data-level="outside">{{
-              entry.accented
+              entry.hangul
             }}</span>
           </a>
         </div>
